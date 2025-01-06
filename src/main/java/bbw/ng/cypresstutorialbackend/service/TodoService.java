@@ -28,4 +28,22 @@ public class TodoService {
     public void deleteById(Long id) {
         todoRepository.deleteById(id);
     }
+
+    public Optional<Todo> changePriority(Long id, String priority) {
+        Optional<Todo> todo = todoRepository.findById(id);
+        todo.ifPresent(t -> {
+            t.setPriority(priority);
+            todoRepository.save(t);
+        });
+        return todo;
+    }
+
+    public Optional<Todo> changeCategory(Long id, String category) {
+        Optional<Todo> todo = todoRepository.findById(id);
+        todo.ifPresent(t -> {
+            t.setCategory(category);
+            todoRepository.save(t);
+        });
+        return todo;
+    }
 }

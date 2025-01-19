@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -58,6 +59,23 @@ class CategoryServiceTest {
         String emptyName = "";
 
         assertThrows(IllegalArgumentException.class, () -> categoryService.addCategory(emptyName));
+    }
+
+    @Test
+    void addCategory_shouldThrowExceptionForWhitespaceName() {
+        String name = "   ";
+
+        assertThrows(IllegalArgumentException.class, () -> categoryService.addCategory(name));
+    }
+
+    @Test
+    void getAllCategories_shouldReturnEmptyIterableIfNoCategories() {
+        when(categoryRepository.findAll()).thenReturn(Collections.emptyList());
+
+        Iterable<Category> result = categoryService.getAllCategories();
+
+        assertFalse(result.iterator().hasNext());
+        verify(categoryRepository, times(1)).findAll();
     }
 
 }

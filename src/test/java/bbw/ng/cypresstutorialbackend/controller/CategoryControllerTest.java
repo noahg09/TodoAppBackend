@@ -77,4 +77,14 @@ class CategoryControllerTest {
         assertEquals(200, result.getStatusCodeValue());
     }
 
+    @Test
+    void getAllCategories_shouldReturnEmptyListIfNoCategoriesExist() {
+        when(categoryService.getAllCategories()).thenReturn(Collections.emptyList());
+
+        ResponseEntity<Iterable<Category>> response = categoryController.getAllCategories();
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertFalse(response.getBody().iterator().hasNext());
+    }
+
 }

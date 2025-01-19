@@ -116,5 +116,44 @@ class TodoServiceTest {
         verify(todoRepository, times(1)).findById(id);
     }
 
+    @Test
+    void changeCategory_shouldReturnEmptyOptionalIfTodoNotFound() {
+        Long id = 999L;
+        String category = "New Category";
+
+        when(todoRepository.findById(id)).thenReturn(Optional.empty());
+
+        Optional<Todo> result = todoService.changeCategory(id, category);
+
+        assertTrue(result.isEmpty());
+        verify(todoRepository, times(1)).findById(id);
+    }
+
+    @Test
+    void changeCategory_shouldUpdateCategoryIfTodoExists() {
+        Long id = 1L;
+        String category = "Work";
+        Todo todo = new Todo();
+        todo.setId(id);
+
+        when(todoRepository.findById(id)).thenReturn(Optional.of(todo));
+        when(todoRepository.save(todo)).thenReturn(todo);
+
+        Optional<Todo> result = todoService.changeCategory(id, category);
+
+        assertTrue(result.isPresent());
+        assertEquals(category, result.get().getCategory());
+        verify(todoRepository, times(1)).save(todo);
+    }
+
+    @Test
+    void deleteById_shouldHandleNonExistentId() {
+        Long nonExistentId = 999L;
+
+        doNothing().when(todoRepository).deleteById(nonExistentId);
+
+        assertDoesNotThrow(() -> todoService.deleteById(nonExistentId));
+        verify(todoRepository, times(1)).deleteById(nonExistentId);
+    }
 
 }

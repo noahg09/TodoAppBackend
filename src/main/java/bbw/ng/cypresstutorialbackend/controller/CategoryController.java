@@ -15,9 +15,13 @@ public class CategoryController {
 
     @PostMapping("/add-category")
     public ResponseEntity<Category> addCategory(@RequestBody String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return ResponseEntity.badRequest().build(); // 400 Bad Request
+        }
         Category category = categoryService.addCategory(name);
         return ResponseEntity.ok(category);
     }
+
 
     @GetMapping("/get-all-categories")
     public ResponseEntity<Iterable<Category>> getAllCategories() {

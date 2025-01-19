@@ -1,4 +1,4 @@
-package bbw.ng.cypresstutorialbackend.service;// src/main/java/com/example/todo/service/TodoService.java
+package bbw.ng.cypresstutorialbackend.service;
 
 import bbw.ng.cypresstutorialbackend.model.Todo;
 import bbw.ng.cypresstutorialbackend.repository.TodoRepository;

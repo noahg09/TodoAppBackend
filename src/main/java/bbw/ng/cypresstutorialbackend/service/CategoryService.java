@@ -11,8 +11,16 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     public Category addCategory(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Category name cannot be null or empty");
+        }
         Category category = new Category();
         category.setName(name);
         return categoryRepository.save(category);
+    }
+
+
+    public Iterable<Category> getAllCategories() {
+        return categoryRepository.findAll();
     }
 }

@@ -16,7 +16,7 @@ public class CategoryController {
     @PostMapping("/add-category")
     public ResponseEntity<Category> addCategory(@RequestBody String name) {
         if (name == null || name.trim().isEmpty()) {
-            return ResponseEntity.badRequest().build(); // 400 Bad Request
+            return ResponseEntity.badRequest().build();
         }
         Category category = categoryService.addCategory(name);
         return ResponseEntity.ok(category);

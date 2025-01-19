@@ -1,4 +1,3 @@
-// src/main/java/bbw/ng/cypresstutorialbackend/service/TodoService.java
 package bbw.ng.cypresstutorialbackend.service;
 
 import bbw.ng.cypresstutorialbackend.model.Todo;

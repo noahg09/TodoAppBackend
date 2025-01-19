@@ -1,4 +1,3 @@
-// CategoryServiceTest.java
 package bbw.ng.cypresstutorialbackend.service;
 
 import bbw.ng.cypresstutorialbackend.model.Category;

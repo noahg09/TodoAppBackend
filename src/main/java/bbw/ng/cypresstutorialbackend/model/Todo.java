@@ -1,3 +1,4 @@
+// src/main/java/bbw/ng/cypresstutorialbackend/model/Todo.java
 package bbw.ng.cypresstutorialbackend.model;
 
 import jakarta.persistence.Entity;
@@ -6,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Entity
 public class Todo {
@@ -16,7 +19,9 @@ public class Todo {
     private boolean completed;
     private String priority;
     private String category;
+    private LocalDate dueDate; // Add dueDate field
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -55,5 +60,13 @@ public class Todo {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 }

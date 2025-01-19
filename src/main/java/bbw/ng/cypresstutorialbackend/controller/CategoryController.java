@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/categories")
+@CrossOrigin(origins = "http://localhost:5174/")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
@@ -16,5 +17,11 @@ public class CategoryController {
     public ResponseEntity<Category> addCategory(@RequestBody String name) {
         Category category = categoryService.addCategory(name);
         return ResponseEntity.ok(category);
+    }
+
+    @GetMapping("/get-all-categories")
+    public ResponseEntity<Iterable<Category>> getAllCategories() {
+        Iterable<Category> categories = categoryService.getAllCategories();
+        return ResponseEntity.ok(categories);
     }
 }

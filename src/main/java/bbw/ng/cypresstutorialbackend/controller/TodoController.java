@@ -1,3 +1,4 @@
+// src/main/java/bbw/ng/cypresstutorialbackend/controller/TodoController.java
 package bbw.ng.cypresstutorialbackend.controller;
 
 import bbw.ng.cypresstutorialbackend.model.Todo;
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/todos")
-@CrossOrigin(origins = "http://localhost:5173/")
+@CrossOrigin(origins = "http://localhost:5174")
 public class TodoController {
     @Autowired
     private TodoService todoService;
@@ -36,6 +37,7 @@ public class TodoController {
         todo.setId(id);
         return todoService.save(todo);
     }
+
     @PutMapping("/change-priority/{id}")
     public ResponseEntity<Todo> changePriority(@PathVariable Long id, @RequestBody String priority) {
         Optional<Todo> todo = todoService.changePriority(id, priority);
